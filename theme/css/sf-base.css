@@ -1,0 +1,471 @@
+:root {
+  --sf-header-height: 80px;
+  --sf-quicksand: 'Quicksand';
+  --sf-bloomsbury: 'bloomsburysans';
+  --sf-roboto: 'Roboto', sans-serif;
+
+  --sf-font-size-body: 3rem;
+  --sf-font-size-body-larger: calc(var(--sf-font-size-body) * 1.145);
+  --sf-font-size-heading: 9.6rem;
+  --sf-font-size-heading-level-2: calc(var(--sf-font-size-heading) * .74);
+  --sf-font-body: var(--sf-quicksand), sans-serif; 
+  --sf-font-heading: var(--sf-bloomsbury), var(--sf-quicksand), sans-serif;
+
+  --sf-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --sf-mobile-menu-speed: .5s;
+
+  --sf-theme-primary:#FFFFFF;
+  --sf-theme-accent: #FFE600;
+  --sf-theme-midground: #00B4AA;
+  --sf-theme-secondary:#F27FB2;
+  --sf-theme-rind: #FFFFFF;
+  --sf-theme-pulp: #FFF27F;
+  --sf-theme-cloud: #FFFFFF;
+
+  --sf-theme-transition: 1s ease-out;
+}
+
+
+[data-sf-theme="arnold-palmer"] {
+  --sf-theme-primary:#97D1DC;
+  --sf-theme-accent: #FFE800;
+  --sf-theme-midground: #FFE800;
+  --sf-theme-secondary:#ab6526;
+  --sf-theme-rind: #FFFFFF;
+  --sf-theme-pulp: #FFF27F;
+}
+
+[data-sf-theme="pink-grapefruit"] {
+  --sf-theme-primary:#F8BACA;
+  --sf-theme-accent: #E54460;
+  --sf-theme-midground: #F1CD15;
+  --sf-theme-secondary: #00B4AA;
+  --sf-theme-rind: #FFFFFF;
+  --sf-theme-pulp: var(--sf-theme-accent);
+}
+
+[data-sf-theme="lemon"] {
+  --sf-theme-primary:#FFFFFF;
+  --sf-theme-accent: #FFE600;
+  --sf-theme-midground: #00B4AA;
+  --sf-theme-secondary:#F27FB2;
+  --sf-theme-rind: #FFFFFF;
+  --sf-theme-pulp: #FFF27F;
+  --sf-theme-cloud: #F27FB2;
+}
+
+[data-sf-theme="orange-mango"] {
+  --sf-theme-primary:#FFE600;
+  --sf-theme-accent: #F78E28;
+  --sf-theme-midground: #95C93D;
+  --sf-theme-secondary:#EE2B37;
+  --sf-theme-rind: #FFFFFF;
+  --sf-theme-pulp: var(--sf-theme-accent);
+}
+
+[data-sf-theme="raspberry-lime"] {
+  --sf-theme-primary:#EF5196;
+  --sf-theme-accent: #95C93D;
+  --sf-theme-midground: #961A4B;
+  --sf-theme-secondary:#E0E669;
+  --sf-theme-rind: #FFFFFF;
+  --sf-theme-pulp: var(--sf-theme-secondary);
+}
+
+
+[data-sf-theme="pink-grapefruit"] .sf-fruit-slice .st1 {
+  fill: var(--sf-theme-midground);
+}
+
+html {
+  font-size: 37.5%;
+}
+
+body {
+  --wp--preset--font-size--x-large: var(--sf-font-size-heading-level-2);
+
+  font-family: var(--sf-font-body);
+  font-weight: 500;
+  font-size: var(--sf-font-size-body);
+  color: black;
+}
+
+main {
+  margin-top: calc(var(--sf-header-height)* -1);
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h2 {
+  font-size: var(--sf-font-size-heading-level-2);
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+.sf-subtitle > p {
+  margin: 0;
+}
+
+/* header */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--sf-header-height);
+  padding: 0 max(3%, 1.8rem);
+  background-color: transparent !important;
+}
+
+.navbar-brand {
+  font-size: 30px !important;
+}
+
+.navbar-brand.sf-brandname:after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-text-stroke: .25em;
+  -webkit-text-stroke-color: var(--sf-theme-accent);
+  z-index: -1;
+  transition: -webkit-text-stroke-color var(--sf-theme-transition);
+}
+
+body:not(.sf-intersecting-products) .navbar-brand.sf-brandname:after {
+  -webkit-text-stroke-color: transparent;
+}
+
+.navbar-toggler {
+  border: 0;
+  background: none;
+}
+
+.navbar-toggler-icon {
+  background: none !important;
+  height: auto;
+  width: 70px;
+}
+
+.navbar-toggler:focus {
+  animation: .8s toggler-reaction cubic-bezier(1, 0, 0, 1) forwards; 
+}
+
+span.sf-nav-text {
+  letter-spacing: -.025em;
+  font-size: 12px;
+}
+
+span.navbar-toggler-icon svg {
+  display: block;
+  width: 60%;
+}
+
+#navbar.sf-animate span.navbar-toggler-icon svg {
+  animation: .6s flip cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+  
+#navbarDropdown {
+  position: fixed;
+  top: 0;
+  background: var(--sf-theme-midground);
+  left: 0;
+  right: 0;
+  min-height: 100svh;
+  transform: translate3d(100%, -100%, 0) scale(.6) rotateX(40deg);
+  border-radius: 0 0 0 100%;
+  transition: transform var(--sf-mobile-menu-speed) var(--sf-ease), border-radius var(--sf-mobile-menu-speed) var(--sf-ease);
+  overflow-x: hidden;
+}
+
+.sf-nav__inner {
+  position: absolute;
+  top: calc(var(--sf-header-height));
+  height: calc(100% - var(--sf-header-height));
+  width: 100%;
+  overflow: hidden;
+}
+
+.sf-nav__scroll-container {
+  position: relative;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.sf-nav__menu-container {
+  min-height: 100%;
+}
+
+#navbarDropdown.show {
+  transform: translate3d(0, 0, 0) scale(1) rotateY(0);
+  border-radius: 0 0 0 0;
+}
+
+#navbarDropdown .navbar-nav {
+  opacity: 0;
+  transition: opacity .6s ease-out;
+  transition-delay: 0s;
+  padding: var(--sf-header-height) 0 2rem;
+  transform: translateY(calc(var(--sf-header-height) * -1));
+}
+
+#navbarDropdown.show .navbar-nav {
+  opacity: 1;
+  transition-delay: calc(var(--sf-mobile-menu-speed) * 1.5);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-size: clamp(34px, calc(5vw + 1rem), 70px) !important;
+  font-family: var(--sf-font-heading);
+  color: black;
+  position: relative;
+}
+
+.navbar-light .navbar-nav .nav-item.active .nav-link:before {
+  content: attr(data-title);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  -webkit-text-stroke: .15em transparent;
+  z-index: -1;
+  transition: all .3s ease;
+}
+
+.navbar-light .navbar-nav .nav-item.active .nav-link:before,
+.navbar-light .navbar-nav .nav-item:hover .nav-link:before {
+  -webkit-text-stroke-color: .15em var(--sf-theme-primary);
+}
+
+/* FOOTER */
+footer {
+  background-color: #222222 !important;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--sf-roboto);
+}
+
+footer, footer a{
+  color: #c5c5c5;
+}
+
+.mpire-m,
+footer a.mpire-link:hover {
+ color: #c51520;
+}
+
+.dev-copyright {
+  color: #717171;
+}
+
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+
+section.sf-hero {
+  height: 100svh;
+  overflow: hidden;
+}
+
+.sf-hero__background {
+  height: 100%;
+  width: 100%;
+}
+
+.sf-hero__background.sf-cans {
+  --cans-width: max(min(93vw, 1500px), 450px);
+  width: var(--cans-width);
+  height: calc(var(--cans-width)* 1.2);
+  transform: translate(0, -50%);
+  top: 50%;
+  right: 0;
+}
+
+.sf-hero__content {
+  width: 100%;
+  max-width: max(min(78%, 90rem), 31rem);
+  margin: 0 auto;
+}
+
+.sf-hero__content h1 {
+  font-size: clamp(2rem, 15vw, calc(var(--sf-font-size-heading) * 1.95)) !important;
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 0 .05em rgba(0,0,0,.25);
+  color: #FFFFFF;
+}
+
+/* homepage page content */
+#sf-main__content {
+  background-color: var(--sf-theme-primary);
+}
+
+#sf-main__content a {
+  font-family: var(--sf-font-heading);
+}
+
+/* Flavor loop */
+
+.sf-flavor__container:has(.sf-sticky) {
+  min-height: 200vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.sf-flavor.sf-sticky {
+  position:-webkit-sticky;
+  position:sticky;
+  top: 0;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sf-flavor h4.sf-title {
+  line-height: .9;
+  margin: 0;
+}
+
+.sf-flavor p {
+  margin: 0;
+}
+
+.sf-flavor .sf-button {
+  margin: .5em 0;
+}
+
+.sf-flavor[data-sf-theme="pink-grapefruit"] .sf-button {
+  background-color: var(--sf-theme-secondary);
+  border-color: var(--sf-theme-accent);
+}
+
+@media only screen and (min-width: 48.06rem) {
+  html {
+    font-size:42.5%;
+  }
+}
+
+@media only screen and (min-width: 48.06rem) {
+  html {
+    font-size:62.5%;
+  }
+}
+
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes toggler-reaction {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  10% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flip {
+  from {
+    transform: rotateY(0);
+  }
+
+  to {
+    transform: rotateY(180deg);
+  }
+}
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+@font-face {
+  font-family: 'bloomsburysans';
+  src:
+    url('./fonts/bloomsbury_sans-webfont.woff2') format('woff2'),
+    url('./fonts/bloomsbury_sans-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+.sf-bloomsbury {
+  font-family: var(--sf-bloomsbury);
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./fonts/Quicksand-Regular.woff2') format('woff2'),
+      url('./fonts/Quicksand-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./fonts/Quicksand-Medium.woff2') format('woff2'),
+      url('./fonts/Quicksand-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.sf-quicksand {
+  font-family: var(--sf-quicksand);
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Regular.woff2') format('woff2'),
+      url('./fonts/Roboto-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Bold.woff2') format('woff2'),
+      url('./fonts/Roboto-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Medium.woff2') format('woff2'),
+      url('./fonts/Roboto-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.sf-roboto {
+  font-family: var(--sf-roboto);
+}
