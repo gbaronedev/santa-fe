@@ -52,8 +52,6 @@
     foreach ($flavors as $i => $post) : setup_postdata($post); 
     
       $link = get_field('sf_pdp_button', $post->ID);
-      var_dump($link);
-    // $link_target = $link['target'] ? $link['target'] : '_self';
       $column_direction = ($i % 2 === 0) ? ' flex-md-row' : ' flex-md-row-reverse'; ?>
 
       <article id="sf-flavor-section__<?= $post->post_name ?>" class="d-flex align-items-center sf-flavor__container">
@@ -69,7 +67,9 @@
                     <?php the_content(); ?>
                   </div>
 
-                  <?php if(!empty($link)): ?>
+                  <?php if(!empty($link)): 
+                    $link_target = $link['target'] ? $link['target'] : '_self';
+                  ?>
                     <a href="<?= $link['url'] ?>" target="<?= $link_target ?>" class="sf-button"><?= $link['title']; ?></a>
                   <?php endif; ?>
 
