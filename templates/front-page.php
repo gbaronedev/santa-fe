@@ -52,7 +52,7 @@
     foreach ($flavors as $i => $post) : setup_postdata($post); 
     
       $link = get_field('sf_pdp_button', $post->ID);
-      SF_test($link);
+      var_dump($link);
     // $link_target = $link['target'] ? $link['target'] : '_self';
       $column_direction = ($i % 2 === 0) ? ' flex-md-row' : ' flex-md-row-reverse'; ?>
 
