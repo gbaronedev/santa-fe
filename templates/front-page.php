@@ -9,13 +9,13 @@
   <section class="sf-hero d-flex flex-column justify-content-center position-relative">
 
     <div class="sf-hero__background position-absolute">
-      <?= wp_get_attachment_image( 10, null, null, array(
+      <?= wp_get_attachment_image( 16, null, null, array(
         'class' => 'sf-object-fit'
       )); ?>
     </div>
 
     <div class="sf-hero__background position-absolute sf-cans">
-      <?= wp_get_attachment_image( 48, null, null, array(
+      <?= wp_get_attachment_image( 17, null, null, array(
         'class' => 'sf-object-fit'
       )); ?>
     </div>
